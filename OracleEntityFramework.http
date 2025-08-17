@@ -1,0 +1,6 @@
+@OracleEntityFramework_HostAddress = http://localhost:5299
+
+GET {{OracleEntityFramework_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

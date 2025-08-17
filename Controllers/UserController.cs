@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Reflection;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using OracleEntityFramework.Models;
 
 namespace OracleEntityFramework.Controllers
 {
@@ -14,7 +17,10 @@ namespace OracleEntityFramework.Controllers
         [HttpGet("api/users")]
         public IActionResult GetUsers()
         {
-            var users = _context.Users.ToList();
+            var users = _context.Users as IQueryable<User>;
+            var user = users.Include(x => x.Role)
+                .FirstOrDefault();
+
             return Ok(users);
         }
 
